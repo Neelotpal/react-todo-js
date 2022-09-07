@@ -4,6 +4,7 @@ import './style.css';
 import Tasks from './components/Tasks';
 import AddTask from './components/AddTask';
 import Header from './components/Header';
+import About from './components/About';
 
 export default function App() {
   const [tasks, setTasks] = useState(db.tasks);
@@ -25,7 +26,7 @@ export default function App() {
         null,
         tasks.map((task) => task.id)
       ) + 1;
-    console.log('adding new task', newTask);
+
     setTasks([...tasks, newTask]);
   };
 
@@ -43,17 +44,50 @@ export default function App() {
   };
 
   return (
-    <div>
+    <>
       <Header showAddTask={showAddTask} onShowAddTask={toggleShowAddTask} />
       {showAddTask && (
         <AddTask addTask={addTask} toggleShowAddTask={toggleShowAddTask} />
       )}
-
       <Tasks
         tasks={tasks}
         toggleReminder={toggleReminder}
         onDelete={onDelete}
       />
-    </div>
+    </>
   );
+
+  // return (
+  //   <BrowserRouter>
+  //     <div>
+  //       hi
+  //       <Routes>
+  //         <Route
+  //           path="/"
+  //           element={
+  //             <>
+  //               <Header
+  //                 showAddTask={showAddTask}
+  //                 onShowAddTask={toggleShowAddTask}
+  //               />
+  //               {showAddTask && (
+  //                 <AddTask
+  //                   addTask={addTask}
+  //                   toggleShowAddTask={toggleShowAddTask}
+  //                 />
+  //               )}
+  //               <Tasks
+  //                 tasks={tasks}
+  //                 toggleReminder={toggleReminder}
+  //                 onDelete={onDelete}
+  //               />
+  //             </>
+  //           }
+  //         />
+
+  //         <Route path="/about" element={<About />} />
+  //       </Routes>
+  //     </div>
+  //   </BrowserRouter>
+  // );
 }
