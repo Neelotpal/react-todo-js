@@ -12,6 +12,7 @@ const Task = ({ task, toggleReminder, onDelete }) => {
       >
         ❌
       </section>
+      <h2> id: {task.id} </h2>
       <h3> {task.text} </h3>
       <p> {task.day} </p>
     </div>

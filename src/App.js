@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import db from './db.json';
 import './style.css';
 import Tasks from './components/Tasks';
+import AddTask from './components/AddTask';
 
 export default function App() {
   const [tasks, setTasks] = useState(db.tasks);
@@ -15,6 +16,17 @@ export default function App() {
     );
   };
 
+  //add task
+  const addTask = (newTask) => {
+    newTask.id =
+      Math.max.apply(
+        null,
+        tasks.map((task) => task.id)
+      ) + 1;
+    console.log('adding new task', newTask);
+    setTasks([...tasks, newTask]);
+  };
+
   //delete task
   const onDelete = (id) => {
     const response = confirm('Are you sure you want to delete the task ?');
@@ -25,6 +37,7 @@ export default function App() {
 
   return (
     <div>
+      <AddTask addTask={addTask} />
       <Tasks
         tasks={tasks}
         toggleReminder={toggleReminder}
