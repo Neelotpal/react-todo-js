@@ -3,9 +3,11 @@ import db from './db.json';
 import './style.css';
 import Tasks from './components/Tasks';
 import AddTask from './components/AddTask';
+import Header from './components/Header';
 
 export default function App() {
   const [tasks, setTasks] = useState(db.tasks);
+  const [showAddTask, setShowAddTask] = useState(false);
 
   //toggleReminder
   const toggleReminder = (id) => {
@@ -35,9 +37,18 @@ export default function App() {
     }
   };
 
+  //toggle show Add task
+  const toggleShowAddTask = () => {
+    setShowAddTask(!showAddTask);
+  };
+
   return (
     <div>
-      <AddTask addTask={addTask} />
+      <Header showAddTask={showAddTask} onShowAddTask={toggleShowAddTask} />
+      {showAddTask && (
+        <AddTask addTask={addTask} toggleShowAddTask={toggleShowAddTask} />
+      )}
+
       <Tasks
         tasks={tasks}
         toggleReminder={toggleReminder}

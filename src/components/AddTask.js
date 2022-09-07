@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const AddTask = ({ addTask }) => {
+const AddTask = ({ addTask, toggleShowAddTask }) => {
   const [taskText, setTaskText] = useState('');
   const [day, setDay] = useState('');
   const [reminder, setReminder] = useState(false);
@@ -16,6 +16,7 @@ const AddTask = ({ addTask }) => {
 
     addTask({ text: taskText, day, reminder });
     clearValues();
+    toggleShowAddTask();
   };
 
   return (
