@@ -15,9 +15,21 @@ export default function App() {
     );
   };
 
+  //delete task
+  const onDelete = (id) => {
+    const response = confirm('Are you sure you want to delete the task ?');
+    if (response) {
+      setTasks(tasks.filter((task) => task.id !== id));
+    }
+  };
+
   return (
     <div>
-      <Tasks tasks={tasks} toggleReminder={toggleReminder}/>
+      <Tasks
+        tasks={tasks}
+        toggleReminder={toggleReminder}
+        onDelete={onDelete}
+      />
     </div>
   );
 }
